@@ -1,18 +1,16 @@
 version: 2
 
-deploy_infrastructure: &deploy_infrastructure
-  run:
-    name: Create/update infrastructure
-    command: |
-      source $BASH_ENV
-      terraform init -input=false
-      terraform plan -out=tfplan
-      terraform apply -input=false tfplan
 
 jobs:
-  deploy-ecr-repository:
+  build:
     docker:
       - image: hashicorp/terraform:0.12.3
     steps:
       - checkout
-      - deploy_infrastruture
+      -   run:
+            name: Create/update infrastructure
+            command: |
+              source $BASH_ENV
+              terraform init -input=false
+              terraform plan -out=tfplan
+              terraform apply -input=false tfplan
