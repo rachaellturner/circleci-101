@@ -6,7 +6,7 @@ provider "aws" {
 # Create AWS S3 bucket
 resource "aws_s3_bucket" "b" {
   bucket = "rt-terraform-test-bucket"
-  acl    = "public"  # grantees and permissions to apply
+  acl    = "private"  # grantees and permissions to apply
   tags = {
     Name        = "terraform bucket"
     Environment = "Dev"
@@ -22,6 +22,7 @@ resource "aws_s3_bucket_object" "file_upload" {
   key = "helloWorld.html"  # object name
   source = "./helloWorld.html"  # path to file to upload
   content_type = "text/html"
+  acl = "public-read"
   # etag allows Terraform to recognise file changes
   etag = "${filemd5("./helloWorld.html")}"
 }
