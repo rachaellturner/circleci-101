@@ -18,7 +18,7 @@ resource "aws_s3_bucket" "b" {
 
 # Upload file to bucket
 resource "aws_s3_bucket_object" "file_upload" {
-  bucket = aws_s3_bucket.b.bucket.name
+  bucket = aws_s3_bucket.b.bucket
   key = "helloWorld.html"  # object name
   source = "./helloWorld.html"  # path to file to upload
   content_type = "text/html"
