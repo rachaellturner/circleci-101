@@ -16,20 +16,12 @@ resource "aws_s3_bucket" "b" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "public-access" {
-  bucket = "${aws_s3_bucket.b.id}"
-
-  block_public_acls   = false
-  block_public_policy = true
-}
-
 # Upload file to bucket
 resource "aws_s3_bucket_object" "file_upload" {
   bucket = aws_s3_bucket.b.bucket
   key = "helloWorld.html"  # object name
   source = "./helloWorld.html"  # path to file to upload
   content_type = "text/html"
-  acl="authenticated-read"
   # etag allows Terraform to recognise file changes
   etag = "${filemd5("./helloWorld.html")}"
 }
