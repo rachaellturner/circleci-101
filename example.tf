@@ -6,7 +6,7 @@ provider "aws" {
 # Create AWS S3 bucket
 resource "aws_s3_bucket" "b" {
   bucket = "rt-terraform-test-bucket"
-  acl    = "private"  # grantees and permissions to apply
+  acl    = "public"  # grantees and permissions to apply
   tags = {
     Name        = "terraform bucket"
     Environment = "Dev"
