@@ -10,7 +10,6 @@ jobs:
       -   run:
             name: Create/update infrastructure
             command: |
-              source $BASH_ENV
               terraform init -input=false
               terraform plan -out=tfplan
               terraform apply -input=false tfplan
