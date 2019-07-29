@@ -22,6 +22,7 @@ resource "aws_s3_bucket_object" "file_upload" {
   key = "helloWorld.html"  # object name
   source = "./helloWorld.html"  # path to file to upload
   content_type = "text/html"
+  acl="authenticated-read"
   # etag allows Terraform to recognise file changes
   etag = "${filemd5("./helloWorld.html")}"
 }
